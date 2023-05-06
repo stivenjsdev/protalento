@@ -1,0 +1,11 @@
+Requerimientos
+
+1. Se debe establecer por defecto font family a Arial, sans-serif y color negro.
+2. El título debe tener tamaño de fuente 24px, el grosor de la fuente debe ser bold, las letras deben ser todas en mayúsculas, y el título debe estar alineado en el centro.
+3. La lista desordenada no debe tener ningún marcador (o bullet), ni padding.
+4. Cada elemento de la lista debe tener tamaño de fuente 18px, padding 10px y un borde inferior de 1px solido y de color lightgray
+
+5. Al pasar el mouse por encima de cada elemento de la lista, su color de fondo debe cambiar a lightyellow.
+6. Al ser enfocado cada elemento de la lista debe tener un color de fondo lightcyan.
+7. Los elementos de la lista sin completar deben tener a su izquierda el siguiente emoji: ❌
+8. Los elementos de la lista completados deben tener a su izquierda el siguiente emoji: ✅. Además deben tener el texto de color gris, y tener una línea horizontal a través del text.
