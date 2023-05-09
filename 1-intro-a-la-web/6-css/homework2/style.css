@@ -1,0 +1,94 @@
+/* General:
+El color del texto es #a2d2ff.
+El color de fondo es #333533.
+El tipo de letra es: Georgia, 'Times New Roman', Times, serif.
+El tamaño del texto: 16px. */
+
+* {
+  color: #a2d2ff;
+  background-color: #333533;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+p,
+li {
+  font-size: 16px;
+}
+
+/* Imagen:
+Ancho de 400px.
+Esquinas redondeadas 8px.
+ */
+
+img {
+  width: 400px;
+  border-radius: 8px;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+/* El encabezado de nivel 1:
+El color del texto es: #8338ec.
+El tipo de letra es: Verdana, Geneva, Tahoma, sans-serif.
+El tamaño del texto: 32px.
+El texto debera de estar centrado.
+El texto debera estar en mayusculas.
+ */
+
+h1 {
+  color: #8338ec;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 32px;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 2px #000;
+}
+
+/* El encabezado de nivel 2:
+El color del texto es: #f15bb5.
+El tipo de letra es: 'Courier New', Courier, monospace.
+El tamaño del texto: 24px.
+ */
+
+h2 {
+  color: #f15bb5;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 24px;
+}
+
+/* 
+ Campos de datos de la pelicula
+El color de los campos son: #060.
+Deberá de estar en negritas
+ */
+
+span {
+  color: #fcf6bd;
+  font-weight: bold;
+}
+
+/* 
+ El texto “Hulk” y “Thor”
+El color del texto es: #00f5d4.
+El color de fondo del texto es: #000.
+Texto en cursiva.
+ */
+
+.especial {
+  color: #00f5d4;
+  background-color: #000;
+}
+
+/* 
+ Links
+El texto “Iron Man” y “Capitán América” deberán de llevarnos a otra página.
+El tamaño del texto: 22px.
+El color del texto es: #c1121f
+Texto subrayado.
+ */
+a {
+  color: #c1121f;
+  font-size: 22px;
+  text-decoration: underline;
+}
