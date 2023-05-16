@@ -1,0 +1,27 @@
+.grid-container {
+	height: 100vh; /*viewport height*/
+	display: grid;
+	gap: 10px;
+	grid-template-rows: 100px auto;
+	grid-template-areas:
+		'navbar     navbar      navbar  '
+		'main       main        sidebar'
+		'suggested  suggested   suggested';
+}
+
+.nav-bar {
+	grid-area: navbar;
+	background-color: rgb(155, 129, 235);
+}
+
+#aside {
+	grid-area: sidebar;
+	background-color: rgb(168, 218, 156);
+}
+
+main {
+	grid-area: main;
+	background-color: rgb(234, 208, 100);
+	display: grid;
+	place-content: center;
+}

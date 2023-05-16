@@ -1,0 +1,41 @@
+.item {
+	background-color: rgb(208, 186, 226);
+	border: dashed 2px green;
+	/* height: 120px; */
+	/* width: 50px; */
+}
+
+/* px, ch, in, rem, em, %, (específica de grid: - 1fr) */
+.grid-container {
+	height: 700px;
+	border: solid 2px slateblue;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+
+	/* gap: espacio renglones espacio columnas */
+	gap: 10px 30px;
+
+	/* Solo espacio para columnas */
+	/* column-gap: 20px; */
+
+	/* Solo espacio para renglones */
+	/* row-gap: 30px; */
+
+	/* grid-template-rows: 100px 50px 300px; */
+	justify-items: stretch;
+}
+
+#one {
+	background-color: greenyellow;
+
+	grid-column-start: 1;
+	grid-column-end: span 2;
+
+	grid-row-start: 2;
+	grid-row-end: span 3;
+}
+
+#two {
+	grid-column-start: 1;
+	grid-column-end: span 3;
+}
