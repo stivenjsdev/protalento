@@ -1,0 +1,99 @@
+* {
+  /* reiniciar */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 1. Selectores y tipos de selectores */
+/* 1.1 selector por etiqueta */
+body {
+  /* herencia */ 
+  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+  font-family: "Roboto", sans-serif; /* 9. Fuentes y fuentes externas de Google */
+  
+  background-color: #f0f0f0; /* 8. Colores y tipos de colores */
+}
+
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* 1.1 selector por clase */
+.tarjeta {
+  width: 300px; /* def ancho del elemento */
+  padding: 20px; /* def el espacio interno */
+  margin: auto; /* centro el elemento en su contenedor */
+  border-radius: 10px; /* redondeo el borde del elemento */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* agrego una sombra al elemento */
+  background-color: white;
+}
+
+/* 1.1 selector por id */
+#imagen-perfil {
+  width: 100%; /* note que el 100% excluye el padding, es el 100% del contenido del elemento */
+  width: 130px;
+  height: 130px;
+  object-fit: cover; /* especifica cómo se debe redimensionar una imagen para ajustarse a su contenedor. y que se recorte si es necesario. */
+  display: block;
+  margin: auto; /* centrar la imagen */
+  border-radius: 50%;
+}
+
+.tarjeta__nombre {
+  font-size: 22px; /* 10. Propiedades para las fuentes */
+  font-weight: 500;
+  color: #333333;
+  text-align: center; /* 11. Text align */
+  text-transform: capitalize; /* primera letra de cada palabra en mayuscula */
+}
+
+.tarjeta__descripcion {
+  font-size: 16px;
+  color: #777777;
+  text-align: center;
+}
+
+/* 3. Pseudo clases y pseudo elementos */
+.tarjeta__descripcion::first-letter {
+  text-transform: uppercase;
+  color: #007bff;
+}
+
+/* 3. Pseudo clases y pseudo elementos */
+.tarjeta__descripcion::after {
+  content: '🍕';
+}
+
+/* 3. Pseudo clases y pseudo elementos */
+.tarjeta__descripcion::before {
+  content: '❤';
+}
+
+
+.tarjeta__boton {
+  display: block; /* ya que por defecto es inline */
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  color: white;
+  background-color: #007bff;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+}
+
+/* 3. Pseudo clases y pseudo elementos */
+.tarjeta__boton:hover {
+  background-color: #0056b3;
+}
+
+.tarjeta__boton:active {
+  background-color: #004085;
+}
+
+/* 4. Especificidad */
+body .tarjeta__boton {
+  font-size: 18px;
+}

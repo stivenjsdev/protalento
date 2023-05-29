@@ -1,0 +1,23 @@
+body {
+  background-color: lightgray;
+  height: 1000px;
+}
+
+* {
+  /* reset */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.caja {
+  border: 5px solid black;
+  margin: 50px;
+  padding: 10px;
+  box-sizing: content-box;
+  width: 300px; /* contenido + padding + borde */
+  height: 80px;
+  background-image: url("https://images.wikidexcdn.net/mwuploads/wikidex/thumb/7/77/latest/20150621181250/Pikachu.png/800px-Pikachu.png");
+  background-size: 100px;
+  background-attachment: fixed;
+}
