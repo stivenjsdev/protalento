@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+}
+
+.titulo {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.lista {
+  list-style-type: none;
+  padding: 0;
+}
+
+.elemento {
+  font-size: 18px;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+
+  /* &:hover {
+    background-color: lightyellow;
+  }
+
+  &:focus {
+    background-color: lightcyan;
+  } */
+}
+
+.elemento:hover {
+  background-color: lightyellow;
+}
+
+.elemento:focus {
+  background-color: lightcyan;
+}
+
+.elemento::before {
+  content: '🍖';
+}
+
+.elemento[data-completed="true"]::before {
+  content: '🐋';
+}
+
+.elemento[data-completed="true"] {
+  color: gray;
+  text-decoration: line-through;
+}
