@@ -14,6 +14,6 @@ El script deberá:
 
 1. Deben utilizar comentarios para explicar qué hace cada parte del código.
 2. Deben utilizar variables y constantes según corresponda.
-3. Deben demostrar el uso de los diferentes tipos de datos primitivos en JavaScript (booleano, null, indefinido, número, cadena, y símbolo).
+3. Deben demostrar el uso de los diferentes tipos de datos primitivos en JavaScript (booleano, null, indefinido, número, cadena).
 4. Deben demostrar el uso de objetos.
 5. Deben utilizar operadores matemáticos simples en el cálculo del IMC.
