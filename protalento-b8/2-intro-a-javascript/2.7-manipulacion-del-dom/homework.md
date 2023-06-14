@@ -27,6 +27,7 @@ Crear una página web sencilla que permita a los usuarios agregar, modificar y e
 - Puedes utilizar `element.style` para cambiar el estilo de un elemento.
 - Para añadir controladores de eventos a un elemento, puedes usar `element.addEventListener`.
 - Para determinar qué elemento fue clicado en un controlador de eventos, puedes usar `event.target`.
+- El evento para doble click es `'dblclick'`.
 
 ## Conclusión
 
