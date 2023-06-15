@@ -77,9 +77,8 @@ for (let i = 0; i < spans.length; i++) {
 
   const infiltrate = document.createElement("p");
   infiltrate.textContent = " soy un infiltrado";
-  infiltrate.style.margin = '0';
-  infiltrate.style.display = 'inline';
+  infiltrate.style.margin = "0";
+  infiltrate.style.display = "inline";
 
   span.appendChild(infiltrate);
 }
-
