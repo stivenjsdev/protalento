@@ -5,4 +5,4 @@ do {
 }
 while (dato < 1 || dato > 10)
 
-console.log(dato)
+console.log(dato);
