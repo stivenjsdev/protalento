@@ -62,7 +62,6 @@ for (let i = 0; i < paragraphs.length; i++) {
   node.style.fontSize = "18px";
 }
 
-
 // obtener nodelist por tag (nombre de etiqueta)
 // const spans = document.querySelectorAll("span");
 const spans = document.getElementsByTagName("span");
@@ -77,5 +76,12 @@ for (let i = 0; i < spans.length; i++) {
   infiltrate.style.margin = "0";
   infiltrate.style.display = "inline";
 
-  span.appendChild(infiltrate)
+  span.appendChild(infiltrate);
 }
+
+const input = document.getElementById("field");
+
+input.addEventListener("keydown", function (event) {
+  console.log(event.key);
+  console.log(event.keyCode);
+});
