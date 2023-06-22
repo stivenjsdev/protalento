@@ -56,12 +56,23 @@
 			<div class="card-header">Adivina el numero secreto</div>
 			<div class="card-body">
 				<h5 class="card-title">Numero Secreto:</h5>
-				<p class="card-text">(?)</p>
-				<button class="btn btn-primary">Revisar</button>
+				<p id="secret-number">(?)</p>
+				<div class="form-floating mb-3">
+					<input
+						type="number"
+						class="form-control"
+						id="floatingInput"
+						placeholder="Tu Respuesta"
+					/>
+					<label for="floatingInput">Tu Respuesta</label>
+				</div>
+				<button class="btn btn-primary" id="check-btn">Revisar</button>
 			</div>
 		</div>
 
-		<div class="alert alert-dark" role="alert">Empieza a advinar</div>
+		<div class="alert alert-dark" id="message" role="alert">
+			Empieza a advinar
+		</div>
 
 		<div class="alert alert-dark" role="alert">
 			Score:
