@@ -31,6 +31,7 @@ checkBtn.addEventListener('click', function() {
         message.classList= 'alert alert-danger';
     }
 
+    
     if(score === 0) {
         message.textContent ='GAME OVER! 😔';
         message.classList= 'alert alert-warning';
