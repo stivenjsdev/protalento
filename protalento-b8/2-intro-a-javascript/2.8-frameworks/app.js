@@ -1,6 +1,6 @@
 const randomNumber = Math.trunc(Math.random() * 20);
 const secretNumberContainer = document.getElementById('secret-number');
-secretNumberContainer.textContent = randomNumber;
+// secretNumberContainer.textContent = randomNumber;
 
 const checkBtn = document.querySelector('#check-btn');
 const reloadBtn = document.querySelector('#reload-btn');
