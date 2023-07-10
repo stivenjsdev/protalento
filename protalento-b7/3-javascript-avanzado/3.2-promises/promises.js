@@ -40,4 +40,5 @@ async function getDitto() {
     }
 }
 
-getDitto();
+await getDitto();
+console.log('Holi')
