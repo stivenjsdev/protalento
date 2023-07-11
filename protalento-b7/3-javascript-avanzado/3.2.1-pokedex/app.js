@@ -59,3 +59,20 @@ const renderPokemonCard = (element) => {
                     <img src='+element.img+'/>' */
     mainContainer.appendChild(cardPokemonDiv);
 }
+
+const renderPokemons = () => {
+    // Hay que pintar en la pantalla cada uno de los pokemons que 
+    // esta en nuestro arreglo globalPokemon
+    for (let i = 0; i < globalPokemon.length; i++) {
+        // Para cada una de las posiciones de globalPokemon creamos un card
+        renderPokemonCard(globalPokemon[i]);
+    }
+}
+
+
+async function main() {
+    await getPokemons();
+    renderPokemons();
+}
+
+main();
