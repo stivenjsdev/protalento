@@ -1,4 +1,5 @@
 let globalPokemon = [];
+const mainContainer = document.querySelector('.main-container');
 
 async function getPokemons() {
     try{
@@ -45,4 +46,16 @@ const normalizePokemons = (name, responseJson) => {
         name: "bulbasaur"}*/
     //Agrego cada uno de los pokemons a mi arreglo
     globalPokemon.push(pokemon);
+}
+
+const renderPokemonCard = (element) => {
+    const cardPokemonDiv = document.createElement('div');
+    cardPokemonDiv.classList = 'card';
+    cardPokemonDiv.innerHTML = `
+                    <h2>${element.name}</h2>
+                    <img src='${element.img}' />   
+                    `;
+                    /*'<h2>'+element.name+'</h2>
+                    <img src='+element.img+'/>' */
+    mainContainer.appendChild(cardPokemonDiv);
 }
