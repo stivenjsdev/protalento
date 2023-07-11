@@ -1,0 +1,29 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: sans-serif;
+}
+form {
+	padding-block: 3rem;
+	display: grid;
+	place-content: center;
+}
+
+img {
+	width: 200px;
+}
+
+.main-container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
