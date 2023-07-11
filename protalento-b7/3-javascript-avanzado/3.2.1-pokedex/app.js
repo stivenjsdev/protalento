@@ -1,5 +1,31 @@
 let globalPokemon = [];
 const mainContainer = document.querySelector('.main-container');
+const searchInput = document.querySelector('#search-input');
+
+const cleanView = () => {
+    mainContainer.innerHTML = '';
+}
+
+searchInput.addEventListener('keyup', () => {
+    const inputText = searchInput.value;
+    // const globalPokemon2 = [...globalPokemon]; Spread Operator
+    // let globalPokemon2 = globalPokemon.splice(0, globalPokemon.length);
+    // console.log(inputText);
+    // searchByName(inputText);
+    let globalPokemon2 = searchByName(inputText);
+    cleanView();
+    renderPokemons(globalPokemon2);
+    console.log(globalPokemon2); 
+});
+
+const searchByName = (searchingParameter) => {
+    const filteredPokemon = globalPokemon.filter((pokemon)=> {
+        if(pokemon.name.includes(searchingParameter)) {
+            return pokemon;
+        }
+    });
+    return filteredPokemon;
+}
 
 async function getPokemons() {
     try{
@@ -10,7 +36,7 @@ async function getPokemons() {
         // No me sirve toooodo lo que tiene la API, solo 
         //quiero los results
         const pokemons = responseJson.results;
-        console.log(pokemons);
+        // console.log(pokemons);
 
         for (let i = 0; i < pokemons.length; i++) {
             //Me voy a crear una variable temporal para cada 
@@ -41,7 +67,7 @@ const normalizePokemons = (name, responseJson) => {
         name: name,
         img: img, 
     };
-    console.log(pokemon);
+    // console.log(pokemon);
     /* { img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
         name: "bulbasaur"}*/
     //Agrego cada uno de los pokemons a mi arreglo
@@ -60,19 +86,33 @@ const renderPokemonCard = (element) => {
     mainContainer.appendChild(cardPokemonDiv);
 }
 
-const renderPokemons = () => {
+const renderPokemons = (array) => {
     // Hay que pintar en la pantalla cada uno de los pokemons que 
     // esta en nuestro arreglo globalPokemon
-    for (let i = 0; i < globalPokemon.length; i++) {
+    for (let i = 0; i < array.length; i++) {
         // Para cada una de las posiciones de globalPokemon creamos un card
-        renderPokemonCard(globalPokemon[i]);
+        renderPokemonCard(array[i]);
     }
 }
 
 
-async function main() {
-    await getPokemons();
-    renderPokemons();
-}
+// async function main() {
+//     await getPokemons();
+//     renderPokemons();
+// }
 
-main();
+// main();
+
+// IIFE Immediately Invoked Function Expression
+
+// (async function main() {
+//         await getPokemons();
+//         renderPokemons();
+//     })();
+
+// Arrow function IIFE & Anónima
+
+(async () => {
+    await getPokemons();
+    renderPokemons(globalPokemon);
+})();
