@@ -31,14 +31,14 @@ function operate(callback) {
     const sum = (a, b) => a + b;
     const multiply = (a, b) => a * b;
 
-    return callback(sum, multiply);
+    return callback(sum, multiply); //no olviden agregarlos aqui
 }
 
-const sumResult = operate((sum, multiply) => {
+const sumResult = operate(sum => {
     return sum(10, 5);
 });
 
-const multiplyResult = operate((sum, multiply) => multiply(10, 5));
+const multiplyResult = operate((_, multiply) => multiply(10, 5));
 
 console.log(sumResult);
 console.log(multiplyResult);
