@@ -31,6 +31,7 @@ function operate(callback) {
     const sum = (a, b) => a + b;
     const multiply = (a, b) => a * b;
 
+
     return callback(sum, multiply); //no olviden agregarlos aqui
 }
 
@@ -51,3 +52,28 @@ console.log(multiplyResult);
 // las operaciones restantes, que son, division y resta.
 // y un ejemplo de su utilización
 
+
+// Los callbacks, aunque utiles
+// pueden llevar a problemas si no se manejan adecuadamente:
+// CALLBACK HELL: anidación excesiva de callbacks dentro de callbacks,
+// lo que resulta en código que es dificil de leer y mantener.
+
+operationOne(function(error, resultOne) {
+    if(error) {
+        // manejo de errores
+    } else {
+        operationTwo(resultOne, function(error, resultTwo) {
+            if(error) {
+                // manejo de errores
+            } else {
+                operationThree(resultTwo, function(error, resultThree) {
+                    if(error) {
+                        // manejo de errores
+                    } else {
+                        // hacer algo con resultThree
+                    }
+                })
+            }
+        })
+    }
+});
