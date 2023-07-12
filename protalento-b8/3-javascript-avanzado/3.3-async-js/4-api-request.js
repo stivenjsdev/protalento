@@ -39,7 +39,7 @@ En JS podemos hacer consultas a una API, mediante la función fetch,
 proveniente de la famosa WEB API.
 
 fetch(url, options)
-    .then(respose => response.json())
+    .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.log(error));
 -------
@@ -60,3 +60,8 @@ JSON example:
     }
 ]
 */
+
+const pokemon = 'pikachu';
+fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+    .then(response => response.json())
+    .then(pokemon => console.log(pokemon.moves.map((pok) => pok.move.name)))
