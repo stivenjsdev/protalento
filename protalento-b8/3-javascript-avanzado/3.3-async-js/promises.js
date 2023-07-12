@@ -34,7 +34,58 @@ const request = (a, b) => {
     })
 }
 
-request(8, 9)
-    .then(data => console.log(data))
-    .catch(error => console.log(error));
+// request(8, 9)
+//     .then(data => console.log(data))
+//     .catch(error => console.log(error));
+
+// Ejercicio probar con diferentes valores para a y b.
+
+/*
+ASYNC AWAIT
+Es una manera especial de trabajar con promesas,
+que se introdujo en ES8 o ECMAScript 2017
+
+Esta sintaxis permite escribir código asincrono
+de manera que se asemeje mas a código sincrino tradicional,
+lo cual puede hacerlo más legible y fácil de entender
+
+async function myFunc() {
+    try {
+        const response = await funcQueRetornaUnaPromesa();
+        // codigo que requiere de la respuesta anterior
+        console.log(response);
+    } catch(error) {
+        console.error(error);
+    }
+}
+
+myFunc ahora es una promesa, por lo que a la hora de llamarla
+hay que tratarla como tal como una promesa
+
+async function main() {
+    const result = await myFunc();
+}
+
+o tambien .then
+
+myFunc()
+    .then()
+    .catch()
+*/
+
+const requestFunc = async (a, b) => {
+    try {
+        const response = await request(a, b)
+        console.log(response);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Ejecutamos la funcion como cualquier otra funcion de JS
+requestFunc(8, 9)
+    .then(res => {
+        console.log('fin');
+    })
+    .catch(e => console.log(e));
 
