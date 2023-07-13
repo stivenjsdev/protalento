@@ -19,7 +19,7 @@ request();
 
 async function getAllUsers() {
     const response = await axios({
-        method: "delete",
+        method: "get",
         url: "https://jsonplaceholder.typicode.com/users"
     });
 
