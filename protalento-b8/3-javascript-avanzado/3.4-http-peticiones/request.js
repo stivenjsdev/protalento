@@ -11,5 +11,7 @@ async function getAllUsers() {
     console.log(usuarios);
 }
 
+getAllUsers();
+
 // Actividad
 // completen todas las peticiones que hicieron en postman aca en el codigo.
