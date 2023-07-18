@@ -1,0 +1,10 @@
+body {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.day-card {
+	width: 11rem;
+	aspect-ratio: 1 / 2;
+	background-color: #bdbdbd;
+}
