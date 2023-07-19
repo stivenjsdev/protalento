@@ -1,0 +1,15 @@
+#pokemon-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0.5rem;
+}
+
+.pokemon-card {
+	width: 200px;
+	aspect-ratio: 1;
+}
+
+.pokemon-card > img {
+	display: block;
+	width: 100%;
+}
