@@ -1,4 +1,28 @@
 const pokemonsGlobal = [];
+const pokemonGrid = document.querySelector('#pokemon-grid');
+const searchInput = document.querySelector('#search-pokemon');
+
+const cleanView = () => {
+    pokemonGrid.innerHTML = '';
+}
+
+searchInput.addEventListener('keyup', () => {
+    const inputValue = searchInput.value;
+    console.log(inputValue);
+    let pokemonsGlobal2 = searchByName(inputValue);
+    console.log(pokemonsGlobal2);
+    cleanView();
+    renderPokemonCard(pokemonsGlobal2);
+});
+
+const searchByName = (searchingParameter) => {
+    const filteredPokemon = pokemonsGlobal.filter((pokemon)=> {
+        if(pokemon.name.includes(searchingParameter)) {
+            return pokemon
+        }
+    })
+    return filteredPokemon
+}
 
 const getPokemons = async () => {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20');
@@ -15,7 +39,7 @@ const getPokemons = async () => {
         
     }
     console.log(pokemonsGlobal);
-    renderPokemonCard();
+    renderPokemonCard(pokemonsGlobal);
 }
 
 const normalizePokemons = (responseJson, pokemon) => {
@@ -31,16 +55,15 @@ const normalizePokemons = (responseJson, pokemon) => {
         pokemonsGlobal.push(pokemonObject);
 }
 
-const pokemonGrid = document.querySelector('#pokemon-grid')
 
-const renderPokemonCard = () => {
-    for(let i = 0; i < pokemonsGlobal.length; i++) {
+const renderPokemonCard = (array) => {
+    for(let i = 0; i < array.length; i++) {
         const pokemonCard = document.createElement('div');
         pokemonCard.classList = 'pokemon-card';
         pokemonCard.innerHTML = `
-        <h2>${pokemonsGlobal[i].name}</h2>
+        <h2>${array[i].name}</h2>
         <img
-            src="${pokemonsGlobal[i].img}"
+            src="${array[i].img}"
         />`;
         pokemonGrid.appendChild(pokemonCard);
     }
