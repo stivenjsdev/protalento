@@ -1,0 +1,39 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: rgb(26, 2, 49);
+	margin: 3rem;
+	display: flex;
+	gap: 1rem;
+	font-family: sans-serif;
+	color: white;
+}
+
+.card {
+	position: relative;
+	z-index: 5;
+	background-color: rgb(255, 255, 255, 0.3);
+	border: solid white 0.2px;
+	backdrop-filter: blur(12.5px);
+	/* -webkit-backdrop-filter: blur(12.5px); */
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+body::after {
+	position: absolute;
+	content: '';
+	z-index: -1;
+	width: 300px;
+	aspect-ratio: 1;
+	background-image: linear-gradient(rgb(255, 32, 214), rgb(255, 175, 27));
+	border-radius: 50%;
+}
