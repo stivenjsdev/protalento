@@ -1,0 +1,43 @@
+CREATE TABLE IF NOT EXISTS owners (
+	pepito SERIAL PRIMARY KEY,
+	first_name VARCHAR(15) NOT NULL,
+	last_name VARCHAR(30) NOT NULL,
+	identification VARCHAR(12) UNIQUE NOT NULL,
+	phone VARCHAR(12) NOT NULL,
+	email VARCHAR(150) UNIQUE NOT NULL,
+	birth_date DATE
+);
+
+CREATE TABLE IF NOT EXISTS pets (
+	pet_id SERIAL PRIMARY KEY,
+	name VARCHAR(150) NOT NULL,
+	type VARCHAR(20) NOT NULL,
+	breed VARCHAR(40) NOT NULL,
+	age INT NOT NULL,
+	owner_id INT NOT NULL,
+	FOREIGN KEY (owner_id) REFERENCES owners(pepito)
+);
+
+-- primero creen las tablas que vean sin FK xD, el orden importa
+
+CREATE TABLE IF NOT EXISTS veterinarians (
+	veterinarian_id SERIAL PRIMARY KEY,
+	name VARCHAR(150) NOT NULL,
+	licence VARCHAR(10) UNIQUE NOT NULL,
+	age INT, -- entero
+	year_experience INT,
+	phone VARCHAR(12) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS attends (
+	veterinarian_id INT NOT NULL,
+	pet_id INT NOT NULL,
+	FOREIGN KEY (veterinarian_id) 
+	REFERENCES veterinarians(veterinarian_id),
+	FOREIGN KEY (pet_id) 
+	REFERENCES pets(pet_id),
+	
+	PRIMARY KEY(pet_id, veterinarian_id)
+	-- COMPOSITE PRIMARY KEY
+);
+
