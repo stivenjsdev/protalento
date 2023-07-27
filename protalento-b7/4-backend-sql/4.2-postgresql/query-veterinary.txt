@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS owners (
-	pepito SERIAL PRIMARY KEY,
+	owner_id SERIAL PRIMARY KEY,
 	first_name VARCHAR(15) NOT NULL,
 	last_name VARCHAR(30) NOT NULL,
 	identification VARCHAR(12) UNIQUE NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS pets (
 	breed VARCHAR(40) NOT NULL,
 	age INT NOT NULL,
 	owner_id INT NOT NULL,
-	FOREIGN KEY (owner_id) REFERENCES owners(pepito)
+	FOREIGN KEY (owner_id) REFERENCES owners(owner_id)
 );
 
 -- primero creen las tablas que vean sin FK xD, el orden importa
