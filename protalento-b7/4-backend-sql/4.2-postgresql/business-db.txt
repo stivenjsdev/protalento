@@ -1,0 +1,62 @@
+CREATE TABLE IF NOT EXISTS categories (
+	category_code SERIAL PRIMARY KEY,
+	name VARCHAR(140) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS parts (
+	part_code SERIAL PRIMARY KEY,
+	name VARCHAR(140) NOT NULL,
+	color VARCHAR(20) NOT NULL,
+	price INT NOT NULL,
+	category_code INT,
+	FOREIGN KEY (category_code)
+	REFERENCES categories(category_code)
+);
+
+CREATE TABLE IF NOT EXISTS suppliers (
+	supplier_code SERIAL PRIMARY KEY,
+	name VARCHAR(140) NOT NULL,
+	address VARCHAR(140) NOT NULL,
+	city VARCHAR(40) NOT NULL,
+	province VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS supplies (
+	supply_code SERIAL PRIMARY KEY,
+	amount INT NOT NULL,
+	date DATE NOT NULL DEFAULT CURRENT_DATE,
+	
+	part_code INT,
+	supplier_code INT,
+	
+	FOREIGN KEY (part_code)
+	REFERENCES parts(part_code),
+	
+	FOREIGN KEY (supplier_code)
+	REFERENCES suppliers(supplier_code)
+);
+
+-- INSERT DATA
+
+INSERT INTO categories
+(name)
+VALUES
+('motores'),
+('carroceria');
+
+INSERT INTO parts
+(name, color, price, category_code)
+VALUES
+('piston', 'gris', 1500000.50, 1),
+('aleron', 'negro-metal', 850000, 2);
+
+INSERT INTO suppliers
+(name, address, city, province)
+VALUES
+('motores el morocho', 'Calle 1 Calle sol', 'Santa Marta', 'Magdalena'),
+('devf', 'algun lado de mexico', 'ciudad de mexico', 'no se');
+
+INSERT INTO supplies
+(amount, part_code, supplier_code)
+VALUES
+(10, 1, 1);

@@ -1,3 +1,5 @@
+-- CREATE TABLE schema.tablename ( columnname type, )
+
 CREATE TABLE IF NOT EXISTS owners (
 	owner_id SERIAL PRIMARY KEY,
 	first_name VARCHAR(15) NOT NULL,

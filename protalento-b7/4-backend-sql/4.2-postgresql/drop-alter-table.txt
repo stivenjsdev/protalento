@@ -1,0 +1,24 @@
+-- Agregar una nueva columna:
+
+ALTER TABLE nombre_de_tu_tabla
+ADD COLUMN nueva_columna tipo_de_dato;
+
+-- Eliminar una columna:
+
+ALTER TABLE nombre_de_tu_tabla
+DROP COLUMN nombre_de_columna;
+
+-- Cambiar el tipo de dato de una columna:
+
+ALTER TABLE nombre_de_tu_tabla
+ALTER COLUMN nombre_de_columna TYPE nuevo_tipo_de_dato;
+
+-- Cambiar el nombre de una columna:
+
+ALTER TABLE nombre_de_tu_tabla
+RENAME COLUMN nombre_actual TO nuevo_nombre;
+
+-- Cambiar el nombre de la tabla:
+
+ALTER TABLE nombre_actual
+RENAME TO nuevo_nombre;
