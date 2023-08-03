@@ -1,0 +1,97 @@
+-- SINTAXIS BASICA DE SELECT
+-- SELECT campo1, campo2 FROM nombre_tabla
+SELECT first_name, last_name FROM actor;
+
+SELECT * FROM actor;
+
+-- ex:Seleccionar todos los datos de la tabla clientes (customer)
+SELECT * FROM customer;
+
+
+-- SINTAXIS SELECT CON LIMITACION DE REGISTROS
+-- SELECT campos FROM tabla LIMIT #_de_registro
+SELECT * FROM customer LIMIT 5;
+
+SELECT * FROM film LIMIT 10;
+
+-- SINTAXIS SELECT CON SKIP DE REGISTROS
+-- SELECT campos FROM tabla LIMIT #_registro OFFSET #_registros
+SELECT first_name, email FROM customer LIMIT 5 OFFSET 199;
+-- note desde sin incluirlo
+
+
+-- SINTAXIS SELECT CONDICIONAL
+-- SELECT campos FROM tabla WHERE condicion
+SELECT * FROM customer WHERE last_name='Robertson';
+
+-- Podemos utilizar AND OR
+SELECT * FROM customer WHERE customer_id>=4 AND customer_id <=100;
+
+SELECT * FROM customer WHERE first_name='John' OR first_name='Barbara';
+
+-- Podemos utilizar negacion !=
+SELECT * FROM customer WHERE first_name!='John' AND first_name!='Barbara';
+
+-- Si deseo consultar un dato pero no se su valor exacto puedo utilizar
+-- LIKE junto con los signos de % y _
+-- % : zero a muchos caracteres y _ : un unico caracter
+SELECT * FROM customer WHERE last_name LIKE 'Joh%';
+
+
+-- BUSCAR VALORES ENTRE RANGO (BETWEEN - AND)
+-- SELECT campos FROM tabla WHERE condicion BETWEEN # AND #
+SELECT * FROM film WHERE film_id BETWEEN 8 AND 10;
+
+
+
+
+-- BUSCAR VALORES ESPECIFICOS (WHERE - IN)
+-- SELECT campos FROM tabla WHERE condicion IN (valor1, valor2, ...)
+SELECT * FROM film WHERE film_id IN (9,2000,22,44);
+SELECT * FROM film WHERE title IN ('Alabama Devil','Attacks Hate');
+
+
+-- BUSCAR VALORES NULOS (NULL) Y VACIOS
+-- SELECT campos FROM tabla WHERE condicion ISNULL
+SELECT * FROM address WHERE address2 ISNULL;
+
+SELECT * FROM address WHERE address2='';
+
+-- ORDENAR REGISTROS (ORDER BY)
+-- SELECT campos FROM tabla WHERE condicion.(opcional) ORDER BY campo/s DESC (opcianl)
+SELECT * FROM film ORDER BY film_id; -- ASC
+SELECT * FROM film ORDER BY film_id DESC;
+
+SELECT * FROM film ORDER BY title; -- tener cuidado con el orden de textos
+
+SELECT * FROM film WHERE film_id BETWEEN 100 AND 200 ORDER BY film_id, title;
+
+
+SELECT * FROM customer ORDER BY 3, 1;
+SELECT * FROM customer ORDER BY first_name, customer_id;
+
+--UPDATE customer SET first_name= 'Aaron' WHERE customer_id=367;
+
+-- SELECT LA CANTIDAD MENOR O MAYOR (MIN & MAX)
+-- SELECT MIN(campo) FROM tabla WHERE condicion; where es opcional
+-- SELECT MAX(campo) FROM tabla WHERE condicion;
+
+SELECT MIN(amount) FROM payment;
+SELECT MAX(amount) FROM payment;
+
+SELECT * FROM payment;
+
+SELECT MAX(amount) FROM payment WHERE amount < 7;
+
+-- CONTAR TODOS LOS ELEMENTOS (COUNT)
+-- SELECT COUNT(campos) FROM tabla WHERE cond.(opcion)
+SELECT * FROM address;
+
+SELECT COUNT(*) FROM payment;
+
+-- cuantos codigos postales diferentes tenemos en la tabla direcciones address
+-- DISTINCT no cuentes campos repetidos
+SELECT COUNT(DISTINCT postal_code) FROM address;
+
+SELECT COUNT(DISTINCT postal_code) FROM address WHERE city_id<=200;
+
