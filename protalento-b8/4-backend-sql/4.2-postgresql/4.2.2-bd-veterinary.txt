@@ -1,0 +1,38 @@
+-- Creacion de tablas de la bd de veterinaria
+CREATE TABLE owners (
+	owner_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(20),
+	last_name VARCHAR(40),
+	phone VARCHAR(15)
+);
+
+CREATE TABLE pets (
+	pet_id SERIAL PRIMARY KEY,
+	name VARCHAR(15),
+	kind VARCHAR(42),
+	breed VARCHAR(40),
+	age INT,
+	owner_id INT,
+	FOREIGN KEY (owner_id)
+	REFERENCES owners(owner_id)
+);
+
+CREATE TABLE veterinarian (
+	vet_profesiona_id SERIAL PRIMARY KEY,
+	name VARCHAR(15),
+	age INT,
+	experience_years INT
+);
+
+CREATE TABLE attends (
+	pet_id INT,
+	vet_profesiona_id INT,
+	-- COMPOSITE PRIMARY KEYS
+	PRIMARY KEY(pet_id, vet_profesiona_id), -- no importa si son de dif tipo
+	
+	FOREIGN KEY (pet_id)
+	REFERENCES pets(pet_id),
+	
+	FOREIGN KEY (vet_profesiona_id)
+	REFERENCES veterinarian(vet_profesiona_id)
+);

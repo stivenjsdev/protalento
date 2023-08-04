@@ -1,0 +1,16 @@
+-- Crear una tabla
+-- Sintaxis
+-- CREATE TABLE nombre_tabla (nombre_columna tipo_dato, nombre_columna tipo_dato);
+CREATE TABLE films (
+	code SERIAL PRIMARY KEY,
+	title VARCHAR(100),
+	date_prod DATE,
+	kind VARCHAR(25),
+	len INTERVAL HOUR TO MINUTE
+	-- ex para datos de tipo interval: '2 hours 30 minutes'
+	-- ex: '3 yearS 5 hours 30 minutes 55 seconds'
+	--PRIMARY KEY (code)
+);
+
+-- Sintaxis para agregar FKs
+-- CREATE TABLE nombre_tabla (nombre_columna, FOREIGN KEY(nombre_columna) REFERENCES nombre_tabla_a_referenciar(nombre_columna_de_la_tabla_referenciada))
