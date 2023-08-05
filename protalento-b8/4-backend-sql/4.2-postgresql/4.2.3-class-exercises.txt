@@ -1,0 +1,48 @@
+-- 1.Obtenga una lista de actores con el nombre de Julia.
+SELECT * FROM actor WHERE LOWER(first_name) = 'julia';
+
+-- 2.Obtenga una lista de actores con el nombre Chris, Cameron o Cuba.
+SELECT * FROM actor WHERE LOWER(first_name) IN ('chris', 'cameron', 'cuba');
+
+-- 3.Seleccione la fila de la tabla cliente para el cliente llamado Jamie Rice.
+SELECT * FROM customer 
+WHERE LOWER(first_name) = 'jamie' AND LOWER(last_name) = 'rice';
+
+SELECT * FROM customer
+WHERE last_name LIKE 'Rice' AND first_name LIKE 'Jamie'; -- puede ser, pero la respuesta correcta es el anterior query
+
+
+-- 4.Seleccione el monto y la fecha de pago de la tabla payment 
+-- donde el monto pagado sea inferior a $ 1.
+SELECT amount, payment_date FROM payment WHERE amount <= 1;
+
+
+-- 5.¿Cuáles son los ID de los últimos 3 clientes que devolvieron un alquiler?
+SELECT * FROM rental
+WHERE return_date IS NOT NULL
+ORDER BY return_date DESC
+LIMIT 3;
+
+-- 6.¿Cuántas películas tienen la clasificación NC-17? 
+--¿Cuántos están clasificados como PG o PG-13?
+SELECT rating, COUNT(rating) FROM film 
+WHERE rating IN ('PG', 'PG-13', 'NC-17')
+GROUP BY rating;
+
+-- 16 ¿Qué película (id) tiene la mayor cantidad de actores?
+SELECT film_id, COUNT(actor_id) as actor_count FROM film_actor
+GROUP BY film_id
+ORDER BY actor_count DESC
+LIMIT 1;
+
+-- 18 ¿Cuál es la tarifa de alquiler promedio de las películas? 
+-- ¿Puedes redondear el resultado a 2 decimales?
+SELECT  ROUND(AVG(rental_rate),2) AS rental_rate_avg FROM film;
+
+-- 20. Selecciona los 10 actores que tienen los nombres 
+-- más largos (nombre y apellido combinados).
+SELECT first_name, last_name,  LENGTH(first_name || last_name) AS full_name_size
+FROM actor
+ORDER BY full_name_size DESC
+LIMIT 10;
+

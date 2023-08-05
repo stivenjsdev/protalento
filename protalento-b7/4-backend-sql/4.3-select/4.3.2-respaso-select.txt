@@ -1,0 +1,93 @@
+-- SINTAXIS SELECT CON LIMITACION
+-- Seleccionar todos los campos de clientes (customers) pero solo traer 5 resultados
+SELECT * FROM customer WHERE activebool = true LIMIT 10;
+
+
+-- Seleccionar todos los campos de clientes (customers), 
+-- trayendo los 5 siguientes registros después de los primeros 100
+SELECT * FROM customer LIMIT 5 OFFSET 101;
+
+-- SELECT CON CONDICIONAL
+-- Seleccionar todos los campos de clientes (customers) qué se llamen John.
+SELECT * FROM customer WHERE first_name = 'John';
+-- indistinguible de minus LOWER(), UPPER() para mayus:
+SELECT * FROM customer WHERE UPPER(first_name) = 'JOHN';
+SELECT * FROM customer WHERE LOWER(first_name) = 'john';
+
+-- Seleccionar todos los campos de customers, menos los que se llamen John y Barbara.
+SELECT * FROM customer
+WHERE LOWER(first_name) != 'john' AND LOWER(first_name) != 'barbara';
+
+-- Seleccionar todos los campos de películas (film) donde el id este entre 8 y 4.
+SELECT * FROM film
+WHERE film_id <= 8 AND film_id >= 4;
+
+SELECT * FROM film
+WHERE film_id BETWEEN 4 AND 8;
+
+-- Seleccionar todos los campos de películas (film) 
+-- donde los id sean 9,12,99,22, y 44.
+SELECT  * FROM film
+WHERE film_id = 9 OR film_id = 12 OR film_id = 99 OR film_id = 22 OR film_id = 44;
+
+SELECT * FROM film
+WHERE film_id IN (9,12,99,22,44);
+
+-- Seleccionar todos los campos de dirección (address) donde el address2 sea NULO.
+SELECT * FROM address WHERE address2 IS NULL;
+
+-- Seleccionar todos los campos de dirección (address) donde el address2 sea VACÍO.
+SELECT * FROM address WHERE address2 = '' OR address2 IS NULL;
+
+-- Seleccionar todos los campos de películas (film) y ordenarlos por su id.
+SELECT * FROM film ORDER BY film_id;
+
+-- Seleccionar customer_id y rental_id de rental y ordenarlos por customer_id y luego por rental_id
+SELECT customer_id, rental_id FROM rental ORDER BY customer_id DESC, rental_id DESC;
+
+-- Seleccionar la cantidad más pequeña de payments
+SELECT MIN(amount) FROM payment;
+
+-- Seleccionar la cantidad más grande de payments, pero con un tope máximo (< 7)
+SELECT MAX(amount) AS maxima_cantidad FROM payment WHERE amount < 7;
+
+-- ¿Cuántos clientes (customer) tenemos?
+SELECT COUNT(*) FROM customer;
+-- note: COUNT(*) cuenta todas las filas incluyendo las que tienen valores NULL 
+-- en alguna de sus columnas, pero si yo le especifico unicamente una columna
+-- se saltaria y no contaria ese registro con valor null.
+-- NO APLICA PARA VALORES VACIOS!!!.
+SELECT address2 FROM address;
+
+-- ¿Cuántos códigos postales diferentes tenemos en nuestra tabla de direcciones (address)?
+SELECT COUNT(DISTINCT postal_code) FROM address;
+
+-- ¿Cuantas películas clasificación PG, PG-13 y NC-17 tenemos?
+SELECT rating, COUNT(rating) FROM film 
+WHERE rating = 'PG' OR
+rating = 'PG-13' OR
+rating = 'NC-17'
+GROUP BY rating;
+
+-- con where in:
+SELECT rating, COUNT(rating) FROM film 
+WHERE rating IN ('PG', 'PG-13', 'NC-17')
+GROUP BY rating;
+
+-- ¿Cúal es el gasto promedio de cada cliente?
+SELECT customer_id, AVG(amount) FROM payment GROUP BY customer_id;
+
+-- SELECT * FROM customer WHERE customer_id = 184;
+
+
+-- ¿Calcular el gasto promedio de los clientes, 
+-- ordenado por cantidad de mayor a menor? (Mi top de clientes)
+SELECT customer_id, AVG(amount) 
+FROM payment GROUP BY customer_id 
+ORDER BY AVG(amount) DESC;
+
+-- utilizando alias:
+SELECT customer_id, AVG(amount) AS average_amount
+FROM payment GROUP BY customer_id 
+ORDER BY average_amount DESC;
+
