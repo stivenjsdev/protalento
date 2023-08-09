@@ -38,3 +38,5 @@ CREATE TABLE IF NOT EXISTS purchase_order (
 	REFERENCES parts(part_code)
 );
 
+-- fin
+
