@@ -1,0 +1,31 @@
+-- Agregar una nueva Columna:
+-- ALTER TABLE nombre_tabla ADD COLUMN nombre_columna tipo_dato;
+
+ALTER TABLE owners
+ADD COLUMN address VARCHAR(40);
+
+-- Eliminar una columna:
+-- ALTER TABLE nombre_tabla DROP COLUMN nombre_columna;
+ALTER TABLE veterinarian
+DROP COLUMN age;
+
+ALTER TABLE veterinarian
+DROP COLUMN vet_profesiona_id;
+
+ALTER TABLE veterinarian
+DROP COLUMN vet_profesiona_id CASCADE;
+
+-- Cambiar el nombre de una columna:
+-- ALTER TABLE nombre_tabla RENAME COLUMN nombre_actual TO nuevo_nombre
+ALTER TABLE	pets
+RENAME COLUMN name TO nickname;
+
+-- Cambiar el tipo de dato de una columna:
+-- ALTER TABLE nombre_tabla ALTER COLUMN nombre_columna TYPE nuevo_tipo_dato
+ALTER TABLE owners
+ALTER COLUMN phone TYPE INT USING phone::integer;
+
+-- Cambiar el nombre de la tabla
+-- ALTER TABLE nombre_tabla RENAME TO nuevo_nombre
+ALTER TABLE attends
+RENAME TO services;
