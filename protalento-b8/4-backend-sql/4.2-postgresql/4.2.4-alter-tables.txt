@@ -29,3 +29,8 @@ ALTER COLUMN phone TYPE INT USING phone::integer;
 -- ALTER TABLE nombre_tabla RENAME TO nuevo_nombre
 ALTER TABLE attends
 RENAME TO services;
+
+-- Eliminar una tabla
+-- DROP TABLE nombre_tabla;
+DROP TABLE services;
+DROP TABLE pets;
