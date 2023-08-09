@@ -1,0 +1,62 @@
+-- Insertar datos a una tabla
+-- INSERT INTO nombre_table (nombre_column1, nombre_column2, ...)
+-- VALUES (dato_para_columna1, dato_para_columna2, ...)
+
+INSERT INTO owners (first_name, last_name, phone)
+VALUES ('Luis', 'Bustos', '3145789433');
+
+INSERT INTO owners (owner_id, first_name, last_name)
+VALUES (3, 'Juan', 'Cardenas');
+
+INSERT INTO owners (last_name, first_name, owner_id)
+VALUES ('Aguas', 'Ligia', 10);
+
+INSERT INTO owners (last_name, first_name, owner_id, phone)
+VALUES ('Aguas', 'Ligia', 10, '1234567890');
+
+INSERT INTO owners (last_name, first_name, owner_id)
+VALUES ("Aguas", "Ligia", 10); -- ERROR SIEMPRE COMILLAS SIMPLES
+
+INSERT INTO pets
+VALUES (
+	2,
+	'KIARO',
+	'Gato',
+	'chanrayadito',
+	2,
+	10
+);
+
+-- INSERT INTO nombre_table VALUES (valor_column_1, valor_columna_2, valor_columna_n)
+-- En el orden exacto de las columnas!!!!!
+-- Siempre siempre deben especificar el id del registro.
+INSERT INTO owners
+VALUES(
+	12,
+	'Ortiz',
+	'Luis',
+	'3182900467'
+);
+
+
+-- Eliminar un registro de una tabla
+-- DELETE FROM nombre_tabla WHERE condicion;
+DELETE FROM owners WHERE first_name = 'Luis'; -- la embarre borre 3 usuarios, despedimos a ligia
+
+DELETE FROM owners WHERE owner_id = 12;
+
+DELETE FROM owners; -- mucho cuidado al hacer esto sin un where, eliminaran todos todos los registro de la tabla
+
+-- Actualizar datos de una tabla
+-- UPDATE nombre_tabla
+-- SET columna_1 = valor1, columna_2 = valor2
+-- WHERE condicion;
+UPDATE pets
+SET age = 3, kind = 'Gata'
+WHERE pet_id = 1;
+
+UPDATE pets
+SET age = 10, kind = 'Perro'
+WHERE pet_id = 5;
+
+SELECT * FROM pets;
