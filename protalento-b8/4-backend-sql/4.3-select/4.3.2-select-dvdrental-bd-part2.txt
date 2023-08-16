@@ -1,0 +1,94 @@
+-- SELECCIONAR LA CANTIDAD MAS PEQUEÑA DE LA TABLA PAYMENTS
+-- SELECT MIN(columna) FROM nombre_tabla WHERE condicion (opcional)
+SELECT MIN(amount) FROM payment;
+
+-- ACTUALIZAR PARA EL PAGO 17503 LA CANTIDAD A -5
+UPDATE payment SET amount = -5 WHERE payment_id = 17503;
+SELECT MIN(amount) FROM payment;
+
+-- SELECCIONAR LA CANTIDAD MAS GRANDE DE LA TABLA PAGOS, PERO CON UN TOPE MAXIMO (< 7)
+SELECT MAX(amount) FROM payment WHERE amount > 7;
+
+-- note: para comparar valores diferentes se utiliza Operador !=
+
+-- note: MAX y MIN funcionan con fechas!
+SELECT MAX(payment_date) FROM payment;
+SELECT * FROM payment ORDER BY payment_date DESC;
+
+-- Seleccionar CUANTOS clientes tenemos
+-- SELECT COUNT(*) FROM nombre_tabla WHERE condicion(opcional)
+-- para que no cuente los valores repetidos utilizamos DISTINCT antes del nombre de la columna
+SELECT COUNT(customer_id) FROM customer;
+
+-- Seleccionar CUANTOS codigos postales diferentes tenemos en nuestra tabla de direcciones
+SELECT COUNT(DISTINCT postal_code) FROM address;
+
+-- COUNT para * cuenta todos los registros sin importar que en alguna columan
+-- el valor sea null
+-- PERO, cuando especificamos una columna en COUNT, este no va a contar los valores
+-- null, pero si cuenta los valores vacios.
+SELECT COUNT(address2) FROM address;
+SELECT * FROM address;
+
+
+-- Seleccionar CUANTAS peliculas clasificacion (rating) PG, PG-13, NC-17 tenemos?
+-- SELECT OPERACION(* o columna) FROM nombre_tabla 
+-- WHERE condion(opc) GROUP BY nombre_columna
+SELECT rating, COUNT(rating) AS rating_count FROM film
+WHERE rating IN ('PG', 'PG-13', 'NC-17')
+GROUP BY rating;
+
+-- Seleccionar CUAL es el gasto promedio de cada cliente?
+-- SELECT AVG(columna) FROM nombre_tabla WHERE condicion(opc) GROUP BY columna
+SELECT AVG(amount), customer_id FROM payment GROUP BY customer_id;
+
+SELECT customer_id, AVG(amount) FROM payment 
+WHERE amount BETWEEN 1 AND 4
+GROUP BY customer_id;
+
+-- Seleccionar CUAL es el gasto promedio de cada cliente,
+-- ordenado por cantidad de mayor a menor?
+SELECT AVG(amount), customer_id FROM payment 
+GROUP BY customer_id ORDER BY AVG(amount) DESC;
+
+SELECT AVG(amount) as averange, customer_id FROM payment 
+GROUP BY customer_id ORDER BY averange DESC;
+
+
+-- EJERCICIOS
+-- Obtenga una lista de actores con el nombre de Julia.
+SELECT * FROM actor WHERE LOWER(first_name) = 'julia';
+
+-- Obtenga una lista de actores con el nombre Chris, Cameron o Cuba.
+SELECT * FROM actor 
+WHERE LOWER(first_name) IN ('chris', 'cameron', 'cuba')
+ORDER BY first_name;
+
+-- Seleccione la fila del cliente para el cliente llamado Jamie Rice.
+SELECT * FROM customer 
+WHERE LOWER(first_name) = 'jamie' AND LOWER(last_name) = 'rice';
+
+-- Selecciona el monto y la fecha de pago de la tabla payment donde 
+-- el monto pagado sea menor a $1.
+SELECT amount, payment_date FROM payment
+WHERE amount < 1 ORDER BY payment_date;
+
+-- ¿Cuáles son los ID de los últimos 3 clientes para devolver un alquiler?
+SELECT customer_id, return_date 
+FROM rental 
+WHERE return_date IS NOT NULL 
+ORDER BY return_date DESC 
+LIMIT 3;
+
+-- ¿Cuántas películas tienen la clasificación NC-17? 
+-- ¿Cuántos están clasificados como PG o PG-13?
+SELECT rating, COUNT(rating) FROM film 
+WHERE rating IN ('NC-17', 'PG', 'PG-13')
+GROUP BY rating;
+
+-- Cuenta el número de ciudades para cada country_id en la tabla city. 
+-- Ordena los resultados por count(*).
+SELECT country_id, COUNT(*) AS city_number 
+FROM city 
+GROUP BY country_id
+ORDER BY city_number;
