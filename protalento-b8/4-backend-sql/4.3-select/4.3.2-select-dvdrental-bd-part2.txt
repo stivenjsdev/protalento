@@ -92,3 +92,9 @@ SELECT country_id, COUNT(*) AS city_number
 FROM city 
 GROUP BY country_id
 ORDER BY city_number;
+
+
+-- Selecciona los 10 actores que tienen los nombres más largos 
+-- (nombre y apellido combinados).
+SELECT first_name, last_name, LENGTH(first_name || last_name) AS len 
+FROM actor ORDER BY len DESC LIMIT 10;
