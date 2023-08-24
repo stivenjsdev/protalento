@@ -1,29 +1,26 @@
-import Router, { response } from "express";
+import { Router } from "express"
+import { apiBody, hola, holaNombre, suma} from '../controllers/controllers.js'
+import { obtenerMascotas, obtenerMascota, insertarMascota, actualizarMascota, borrarMascota} from '../controllers/mascotas.js'
+
 const router = Router()
 
-router.get("/",(request,response)=>{
-    response.json({
-        hola: "mundo"
-    })  
-})
-
+router.get("/hola", hola)
 //router.get("/hola/:nombre",(request, response)=>{
-router.post("/hola/:nombre",(request, response)=>{
-    const name = request.params.nombre
-    response.json({
-        hola: `Hola ${name}!`
-    })
-})
-
+router.get("/hola/:nombre", holaNombre)
 //Suma 1 + 2 ?? 
-router.get("/suma/:x/:y",(request, response)=>{
-    const x = parseInt(request.params.x)
-    const y = parseInt(request.params.y)
+router.post("/suma/:x/:y", suma)
+router.put("/api/body", apiBody)
 
-    response.json({
-        resultado: x+y 
-    })
-})
+/*GET: Para leeer informacion*/
+router.get("/mascotas",obtenerMascotas)
+router.get("/mascotas/:id",obtenerMascota)
+/*POST: Insertar información */
+router.post("/mascotas",insertarMascota)
+/*PUT: Editar informacion*/
+router.put("/mascotas/:id",actualizarMascota)
+/*DELETE: Borrar informacion*/
+router.delete("/mascotas/:id",borrarMascota)
+
 
 
 export default router
