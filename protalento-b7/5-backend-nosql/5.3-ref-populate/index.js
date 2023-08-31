@@ -65,7 +65,66 @@ async function main() {
                 console.log(error.message);
                 res.status(500).json({ message: error.message });
             }
-        })
+        });
+
+        server.delete('/users/:id', async (req, res) => {
+            const userId = req.params.id;
+            try {
+                const deletedUser = await User.findByIdAndRemove(userId);
+
+                if (!deletedUser) {
+                    return res.status(404).json({ message: "User not found" });
+                }
+
+                res.status(200).json(deletedUser);
+            } catch (error) {
+                console.log(error.message);
+                if (error.message.includes('Cast to ObjectId failed for value')) {
+                    return res.status(400).json({ message: 'Eso que enviaste no es un id' });
+                }
+                res.status(500).json({ message: error.message });
+            }
+        });
+
+        // POST SCHEMA
+        const postSchema = new mongoose.Schema({
+            title: String,
+            content: String,
+            auth: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            }
+        }); // { versionKey: false }
+
+        // Post model
+        const Post = mongoose.model('Post', postSchema);
+
+        // Post Routes
+        server.get('/posts', async (req, res) => {
+            try {
+                const posts = await Post.find().populate('auth');
+                console.log(posts);
+    
+                res.status(200).json(posts);
+            } catch (error) {
+                res.status(500).json({ message: error.message })
+            }
+        });
+
+        server.post("/posts", async (req, res) => {
+            try {
+                const newPost = req.body;
+                const post = new Post(newPost);
+                const savedPost = await post.save();
+
+                res.status(201).json(savedPost);
+            } catch (error) {
+                console.log(error.message);
+                res.status(500).json({ message: error.message });
+            }
+        });
+
+        // falta update y delete para POST
     
         // levantar el servidor
         server.listen(PORT, () => {
