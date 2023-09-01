@@ -5,6 +5,8 @@ import mongoose from 'mongoose';
 const server = express();
 const PORT = 3000;
 
+// funciona para que tome los datos JSON de una solicitud, los transforme en un objeto JavaScript 
+// y luego los adjunte a la propiedad body del objeto request antes de llamar al controlador de ruta.
 server.use(express.json());
 server.use(cors());
 
