@@ -5,6 +5,7 @@ const server = express();
 const PORT = 3000;
 
 server.use(express.json());
+server.use(cors());
 
 const main = async () => {
     try {
@@ -26,7 +27,7 @@ const main = async () => {
         const ClienteZapatos = mongoose.model('ClienteZapato', clienteZapatosSchema);
 
         // Rutas
-        server.get('/clientes', async (req, res) => {
+        server.get('api/clientes', async (req, res) => {
             try {
                 const clientes = await ClienteZapatos.find();
                 console.log(clientes);

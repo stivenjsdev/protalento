@@ -13,18 +13,18 @@ async function main() {
         // conectarnos a la bd
         await mongoose.connect('mongodb+srv://sensei:1234@cluster0.vep1mp4.mongodb.net/social');
 
-        // SCHEMAS
-        // User Schema
+        // USER SCHEMA
         const userSchema = new mongoose.Schema({
             name: String,
             email: String,
             // likedPosts arreglo de Posts type ObjectID
         });
 
+        // USER MODEL
         const User = mongoose.model("User", userSchema);
 
-        // ROUTES
-        server.get("/users", async (req, res) => {
+        // USER ROUTES
+        server.get("api/users", async (req, res) => {
             try {
                 const users = await User.find();
                 console.log(users);
@@ -35,7 +35,7 @@ async function main() {
             }
         });
 
-        server.post("/users", async (req, res) => {
+        server.post("api/users", async (req, res) => {
             try {
                 const newUser = req.body;
                 const user = new User(newUser);
@@ -48,7 +48,7 @@ async function main() {
             }
         });
 
-        server.patch('/users/:id', async (req, res) => {
+        server.patch('api/users/:id', async (req, res) => {
             const userId = req.params.id;
             const userFields = req.body;
             try {
@@ -67,7 +67,7 @@ async function main() {
             }
         });
 
-        server.delete('/users/:id', async (req, res) => {
+        server.delete('api/users/:id', async (req, res) => {
             const userId = req.params.id;
             try {
                 const deletedUser = await User.findByIdAndRemove(userId);
@@ -96,11 +96,11 @@ async function main() {
             }
         }); // { versionKey: false }
 
-        // Post model
+        // POST MODEL
         const Post = mongoose.model('Post', postSchema);
 
-        // Post Routes
-        server.get('/posts', async (req, res) => {
+        // POST ROUTES
+        server.get('api/posts', async (req, res) => {
             try {
                 const posts = await Post.find().populate('auth');
                 console.log(posts);
@@ -111,7 +111,7 @@ async function main() {
             }
         });
 
-        server.post("/posts", async (req, res) => {
+        server.post("api/posts", async (req, res) => {
             try {
                 const newPost = req.body;
                 const post = new Post(newPost);
@@ -124,7 +124,7 @@ async function main() {
             }
         });
 
-        // falta update y delete para POST
+        // update and post...
     
         // levantar el servidor
         server.listen(PORT, () => {
