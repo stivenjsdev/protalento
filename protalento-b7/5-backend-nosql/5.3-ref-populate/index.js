@@ -26,7 +26,7 @@ async function main() {
         const User = mongoose.model("User", userSchema);
 
         // USER ROUTES
-        server.get("api/users", async (req, res) => {
+        server.get("/api/users", async (req, res) => {
             try {
                 const users = await User.find();
                 console.log(users);
@@ -37,7 +37,7 @@ async function main() {
             }
         });
 
-        server.post("api/users", async (req, res) => {
+        server.post("/api/users", async (req, res) => {
             try {
                 const newUser = req.body;
                 const user = new User(newUser);
@@ -50,7 +50,7 @@ async function main() {
             }
         });
 
-        server.patch('api/users/:id', async (req, res) => {
+        server.patch('/api/users/:id', async (req, res) => {
             const userId = req.params.id;
             const userFields = req.body;
             try {
@@ -69,7 +69,7 @@ async function main() {
             }
         });
 
-        server.delete('api/users/:id', async (req, res) => {
+        server.delete('/api/users/:id', async (req, res) => {
             const userId = req.params.id;
             try {
                 const deletedUser = await User.findByIdAndRemove(userId);
@@ -102,7 +102,7 @@ async function main() {
         const Post = mongoose.model('Post', postSchema);
 
         // POST ROUTES
-        server.get('api/posts', async (req, res) => {
+        server.get('/api/posts', async (req, res) => {
             try {
                 const posts = await Post.find().populate('auth');
                 console.log(posts);
@@ -113,7 +113,7 @@ async function main() {
             }
         });
 
-        server.post("api/posts", async (req, res) => {
+        server.post("/api/posts", async (req, res) => {
             try {
                 const newPost = req.body;
                 const post = new Post(newPost);
