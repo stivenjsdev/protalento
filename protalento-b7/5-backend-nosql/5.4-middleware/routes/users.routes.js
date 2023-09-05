@@ -15,6 +15,21 @@ usersRouter.get('/', async (req, res) => {
   }
 });
 
+usersRouter.get('/:id', async (request, response, next) => {
+  try {
+    const id = request.params.id;
+    const userFound = await User.find({ _id: id });
+
+    if (!userFound) {
+      return response.status(404).end();
+    }
+
+    response.status(200).json(userFound);
+  } catch (error) {
+    next(error); // cuando el next recibe un param cambia la estructura del middleware
+  }
+});
+
 // localhost:3000/api/users
 usersRouter.post('/', async (req, res) => {
   try {
@@ -30,9 +45,9 @@ usersRouter.post('/', async (req, res) => {
     const user = new User(newUser);
     const savedUser = await user.save();
 
-    res.status(201).json(savedUser);
+    // res.status(201).json(savedUser);
+    res.status(201).end();
   } catch (error) {
-    console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 });
@@ -51,11 +66,11 @@ usersRouter.patch('/:id', async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    res.status(200).json(updatedUser);
+    // res.status(200).json(updatedUser);
     // res.status(200).json({ message: 'User Updated correctly'});
+    res.status(200).end();
   } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 });
 
@@ -69,12 +84,9 @@ usersRouter.delete('/:id', async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    res.status(200).json(deletedUser);
+    // res.status(200).json(deletedUser);
+    res.status(200).end();
   } catch (error) {
-    console.log(error.message);
-    if (error.message.includes('Cast to ObjectId failed for value')) {
-      return res.status(400).json({ message: 'Eso que enviaste no es un id' });
-    }
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 });
