@@ -8,5 +8,8 @@
 5. definimos un nuevo script ```"dev": "nodemon index.js"```
 6. y por ultimo instalamos la dependencias ```npm i express mongoose cors```
 
+## Plugins
+- Thunder Client
+- REST Client
 
 
