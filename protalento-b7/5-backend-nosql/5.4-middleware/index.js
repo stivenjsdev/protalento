@@ -3,18 +3,21 @@ import cors from 'cors';
 import { dbConnect } from './database/db.js';
 import { router } from './routes/index.routes.js';
 import { requestLogger } from './middleware/logger.js';
+import { unknownEndpoint } from './middleware/unknownEndpoint.js';
 
 const server = express();
 const PORT = 3000;
 
 // MIDDLEWARES
 server.use(express.json());
-server.use(requestLogger);
 server.use(cors());
+server.use(requestLogger);
 
 // ROUTES
 // localhost:3000/api
 server.use('/api', router);
+
+server.use(unknownEndpoint);
 
 async function main() {
   try {
