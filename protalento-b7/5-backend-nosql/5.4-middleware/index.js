@@ -2,25 +2,17 @@ import express from 'express';
 import cors from 'cors';
 import { dbConnect } from './database/db.js';
 import { router } from './routes/index.routes.js';
+import { requestLogger } from './middleware/logger.js';
 
 const server = express();
 const PORT = 3000;
 
-// funciona para que tome los datos JSON de una solicitud, los transforme en un objeto JavaScript
-// y luego los adjunte a la propiedad body del objeto request antes de llamar al controlador de ruta.
+// MIDDLEWARES
 server.use(express.json());
-server.use(cors());
 server.use(requestLogger);
+server.use(cors());
 
-function requestLogger(request, response, next) {
-  console.log('Method:', request.method);
-  console.log('Path:  ', request.path);
-  console.log('Body:  ', request.body);
-  console.log('-----------------------');
-  next();
-  return undefined
-}
-
+// ROUTES
 // localhost:3000/api
 server.use('/api', router);
 
