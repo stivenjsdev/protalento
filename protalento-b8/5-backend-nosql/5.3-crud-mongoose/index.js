@@ -13,9 +13,12 @@ server.use(
 ); /* me permite recibir solicitudes de clientes fuera de mi dominio */
 
 async function main() {
-  await mongoose.connect("mongodb+srv://<username>:<password>@cluster0.vep1mp4.mongodb.net/");
+  await mongoose.connect("mongodb+srv://sensei:1234@cluster0.vep1mp4.mongodb.net/");
+
+  server.listen(PORT, () => {
+    console.log(`Server listen in http://localhost:${PORT}`);
+  });
 }
 
-server.listen(PORT, () => {
-  console.log(`Server listen in http://localhost:${PORT}`);
-});
+main();
+
