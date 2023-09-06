@@ -15,7 +15,7 @@ server.use(
   cors()
 ); /* me permite recibir solicitudes de clientes fuera de mi dominio */
 
-server.use('/api/v1', router);
+server.use("/api/v1/", router);
 
 async function main() {
   await mongoose.connect(URL);
@@ -36,7 +36,13 @@ async function main() {
   // ROUTES
   // CRUD
   // get all users
-  router.get('/users', () => {}); /* http://localhost:3000/api/v1/users */
+  /* http://localhost:3000/api/v1/users */
+  router.get("/users", async (request, response) => {
+    // find all documents
+    const users = await User.find({});
+
+    response.status(200).json(users);
+  });
 
   server.listen(PORT, () => {
     console.log(`Server listen in http://localhost:${PORT}`);
