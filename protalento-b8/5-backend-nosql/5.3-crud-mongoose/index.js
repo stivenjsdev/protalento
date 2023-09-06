@@ -44,6 +44,18 @@ async function main() {
     response.status(200).json(users);
   });
 
+  // get user by id
+  router.get("/users/:id", async (request, response) => {
+    const id = request.params.id;
+    const userFound = await User.findById(id);
+
+    if (!userFound) {
+      return response.status(404).end();
+    }
+
+    response.status(200).json(userFound);
+  });
+
   server.listen(PORT, () => {
     console.log(`Server listen in http://localhost:${PORT}`);
   });
