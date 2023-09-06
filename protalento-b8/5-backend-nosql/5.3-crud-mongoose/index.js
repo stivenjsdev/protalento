@@ -1,8 +1,9 @@
-import express from "express";
+import express, { Router } from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 
 const server = express();
+const router = Router();
 const PORT = 3000;
 const URL =
   "mongodb+srv://sensei:1234@cluster0.vep1mp4.mongodb.net/social?retryWrites=true&w=majority";
@@ -13,6 +14,8 @@ server.use(
 server.use(
   cors()
 ); /* me permite recibir solicitudes de clientes fuera de mi dominio */
+
+server.use('/api/v1', router);
 
 async function main() {
   await mongoose.connect(URL);
@@ -29,6 +32,11 @@ async function main() {
     "User",
     userSchema
   ); /* El nombre debe ser siempre en singular */
+
+  // ROUTES
+  // CRUD
+  // get all users
+  router.get('/users', () => {}); /* http://localhost:3000/api/v1/users */
 
   server.listen(PORT, () => {
     console.log(`Server listen in http://localhost:${PORT}`);
