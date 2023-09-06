@@ -8,12 +8,10 @@ const PORT = 3000;
 const URL =
   "mongodb+srv://sensei:1234@cluster0.vep1mp4.mongodb.net/social?retryWrites=true&w=majority";
 
-server.use(
-  express.json()
-); /* transformar el cuerpo de la peticion en un json */
-server.use(
-  cors()
-); /* me permite recibir solicitudes de clientes fuera de mi dominio */
+/* transformar el cuerpo de la peticion en un json */
+server.use(express.json());
+/* me permite recibir solicitudes de clientes fuera de mi dominio */
+server.use(cors());
 
 server.use("/api/v1/", router);
 
