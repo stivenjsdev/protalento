@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // USER MODEL
-const User = mongoose.model(
+export const User = mongoose.model(
   "User",
   userSchema
 ); /* El nombre debe ser siempre en singular */
