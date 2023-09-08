@@ -1,12 +1,10 @@
 import express, { Router } from "express";
 import cors from "cors";
-import mongoose from "mongoose";
+import { dbConnection } from "./database/db.js";
 
 const server = express();
 const router = Router();
 const PORT = 3000;
-const URL =
-  "mongodb+srv://sensei:1234@cluster0.vep1mp4.mongodb.net/social?retryWrites=true&w=majority";
 
 /* transformar el cuerpo de la peticion en un json */
 server.use(express.json());
@@ -16,7 +14,7 @@ server.use(cors());
 server.use("/api/v1/", router);
 
 async function main() {
-  await mongoose.connect(URL);
+  await dbConnection();
 
   // USER SCHEMA
   const userSchema = new mongoose.Schema({
