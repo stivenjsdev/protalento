@@ -4,6 +4,7 @@ import { dbConnection } from "./database/db.js";
 import { userRouter } from "./routes/user.routes.js";
 import { logger } from "./middleware/logger.js";
 import { unknownEndpoint } from "./middleware/unknownEndpoint.js";
+import { errorHandler } from "./middleware/errorHandler.js";
 
 const server = express();
 const PORT = 3000;
@@ -15,6 +16,7 @@ server.use(cors());
 server.use(logger);
 server.use("/api/v1/users", userRouter);
 server.use(unknownEndpoint);
+server.use(errorHandler);
 
 async function main() {
   await dbConnection();
