@@ -49,17 +49,41 @@ userRouter.post("/", async (request, response) => {
   }
 });
 
-// update user
-/* PATCH http://localhost:3000/api/v1/users */
+// update user by id
+/* PATCH http://localhost:3000/api/v1/users/:id */
 /* put va a reemplazar todo el recurso, y patch va a actualizar el recurso */
 userRouter.patch("/:id", async (request, response) => {
   try {
     const id = request.params.id;
     const userNewProps = request.body;
-    const updatedUser = await User.findByIdAndUpdate(id, userNewProps, { new: true }).exec();
+    const updatedUser = await User.findByIdAndUpdate(id, userNewProps, {
+      new: true,
+    }).exec();
 
     // response.status(200).json(updatedUser);
     response.status(200).end();
+  } catch (error) {
+    console.log(error.name);
+    console.log(error.message);
+    response.status(400).json({ error: error.message });
+  }
+});
+
+// delete user by id
+/* DELETE http://localhost:3000/api/v1/users/:id */
+userRouter.delete("/:id", async (request, response) => {
+  try {
+    const id = request.params.id;
+
+    const deletedUser = await User.findByIdAndRemove(id).exec();
+
+    if (!deletedUser) {
+      // return response.status(404).json({ message: "user not found" });
+      response.status(404).end();
+    }
+
+    // response.status(200).send(deletedUser);
+    response.status(204).end(); /* al definir un 204 ignorará y no enviara ninguna respuesta al cliente, aunque pongamos un .json o .send*/
   } catch (error) {
     console.log(error.name);
     console.log(error.message);
