@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { dbConnection } from "./database/db.js";
 import { userRouter } from "./routes/user.routes.js";
+import { commentRouter } from "./routes/comment.routes.js";
 import { logger } from "./middleware/logger.js";
 import { unknownEndpoint } from "./middleware/unknownEndpoint.js";
 import { errorHandler } from "./middleware/errorHandler.js";
@@ -15,6 +16,8 @@ server.use(express.json());
 server.use(cors());
 server.use(logger);
 server.use("/api/v1/users", userRouter);
+server.use("/api/v1/comments", commentRouter);
+
 server.use(unknownEndpoint);
 server.use(errorHandler);
 
