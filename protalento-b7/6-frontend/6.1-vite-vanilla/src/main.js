@@ -20,9 +20,7 @@ const App = () => {
 
       ${Card({ children: Button() })}
 
-      ${Paragraph({ text: "Soy un texto jejeje" })}
-      ${Paragraph({ text: "Si ya sabia que eras un texto" })}
-      ${Paragraph({ text: "Calmense los dos porfavor" })}
+      ${Paragraph({ text: "Hasta luego" })}
     </div>
   `;
 };
