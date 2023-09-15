@@ -40,6 +40,7 @@ const createComment = async (request, response, next) => {
 
 const getComments = async(request, response, next) => {
     try{
+        console.log("Aqui estoy entrando al controlador")
         const comments = await Comment.find({}, "title content auth")
         .populate("auth")
         // .populate({path:"auth"})
@@ -50,4 +51,46 @@ const getComments = async(request, response, next) => {
     }
 }
 
-export { createComment, getComments }
+const getComment = async(request, response, next) => {
+    try{
+        const id = request.params.id
+        const comment = await Comment.findById(id).exec()
+        response.status(200).json(comment)
+    }catch(error){
+        next(error)
+    }
+}
+
+const updateComment = async(request, response, next) => {
+    try{
+        const id = request.params.id;
+        const { title, content, auth } = request.body
+
+        const nuevoBody = {
+            "title": title,
+            "content": content, 
+            "auth": auth
+        }
+
+        const comment = await Comment.findByIdAndUpdate(id, nuevoBody, {new:true} ).exec()
+
+        response.status(200).json(comment)
+
+    }catch(error){
+        next(error)
+    }
+}
+
+const deleteComment =  async(request, response, next) =>{
+    try{
+        const id = request.params.id
+        await Comment.findByIdAndRemove(id).exec()
+        response.status(200).end()
+
+    }catch(error){
+        next(error)
+    }
+}
+
+
+export { createComment, getComments, getComment, updateComment, deleteComment }

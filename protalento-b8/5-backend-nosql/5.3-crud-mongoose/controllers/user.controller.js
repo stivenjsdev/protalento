@@ -34,7 +34,7 @@ const createUser = async (request, response, next) => {
       // const newUser = new User(userProps);
       // await newUser.save();
       // OR...
-  
+
       // MANERA 2, elijan a su gusto.
       await User.create(userProps);
   
