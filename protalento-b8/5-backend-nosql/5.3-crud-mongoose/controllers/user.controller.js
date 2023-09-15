@@ -1,4 +1,5 @@
 import { User } from "../models/user.js";
+import Joi from 'joi'
 
 const getUsuarios = async (request, response, next) => {
     try {
@@ -28,18 +29,46 @@ const getUsuario = async (request, response, next) => {
 
 const createUser = async (request, response, next) => {
     try {
-      const userProps = request.body;
   
-      // MANERA 1
-      // const newUser = new User(userProps);
-      // await newUser.save();
-      // OR...
+      const { name, email, password } = request.body
 
-      // MANERA 2, elijan a su gusto.
-      await User.create(userProps);
+      const schema = Joi.object({
+          name: Joi.string().min(4).max(10),
+          email: Joi.string().email().required(),
+          password: Joi.string().pattern(new RegExp(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]).{8,}$/))
+      })
+
+      const value = schema.validate({ 
+        name: name, 
+        email: email,
+        password: password
+      });
+
+      if(value.error){
+
+        // next(error)
+        response.status(400).json({error: "Hay error"})
+
+      }else{
+        // MANERA 1
+        // const newUser = new User(userProps);
+        // await newUser.save();
+        // OR...
+        const userProps = {
+          name, 
+          email,
+          password
+        };
+
+        // MANERA 2, elijan a su gusto.
+        await User.create(userProps);
+    
+        // response.status(201).json(newUser);
+        response.status(201).end();
+      }
+
+
   
-      // response.status(201).json(newUser);
-      response.status(201).end();
     } catch (error) {
       next(error);
     }

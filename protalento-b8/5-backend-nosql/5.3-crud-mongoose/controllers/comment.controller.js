@@ -91,6 +91,4 @@ const deleteComment =  async(request, response, next) =>{
         next(error)
     }
 }
-
-
 export { createComment, getComments, getComment, updateComment, deleteComment }
