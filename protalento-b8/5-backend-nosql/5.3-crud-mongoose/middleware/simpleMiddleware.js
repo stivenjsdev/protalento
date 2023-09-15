@@ -1,5 +1,12 @@
 const simpleMiddleware = (request, response, next) => {
-    console.log("Aqui estoy entrando al middleware ")
+    
+    /* Ejemplo de Auth muy basico
+    if(request.headers.token == "Perrito1234")
+        next()
+    else
+        response.status(500).send("error")
+    */
+        
     next()
 }
 
