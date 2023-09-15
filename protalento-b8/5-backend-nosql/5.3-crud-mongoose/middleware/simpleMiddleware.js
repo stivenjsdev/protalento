@@ -1,5 +1,5 @@
 const simpleMiddleware = (request, response, next) => {
-    
+    console.log("Soy el MW")
     /* Ejemplo de Auth muy basico
     if(request.headers.token == "Perrito1234")
         next()
