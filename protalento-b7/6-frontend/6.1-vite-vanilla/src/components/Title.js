@@ -1,6 +1,5 @@
-export const Title = ({ title }) => {
-  // props
-  return `
-    <h1>${title}</h1>
-  `;
-};
+const Title = ({ title }) => `
+  <h1>${title}</h1>
+`;
+
+export default Title;

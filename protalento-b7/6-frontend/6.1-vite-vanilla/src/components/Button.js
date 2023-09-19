@@ -1,8 +1,9 @@
-export const Button = () => {
+const Button = () => {
   let counter = 0;
   window.buttonHandleClick = (event) => {
-    counter = counter + 1;
-    event.target.innerHTML = `count is ${counter}`;
+    counter += 1;
+    const buttonEvent = event;
+    buttonEvent.target.innerHTML = `count is ${counter}`;
   };
 
   return `
@@ -11,3 +12,5 @@ export const Button = () => {
       </button>
     `;
 };
+
+export default Button;

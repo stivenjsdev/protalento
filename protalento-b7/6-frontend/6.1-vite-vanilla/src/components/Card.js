@@ -1,8 +1,6 @@
-export const Card = ({ children }) => {
-  // prop especial llamada children
-  return `
-      <div class="card">
-        ${children}
-      </div>
-    `;
-};
+const Card = ({ children }) => `
+  <div class="card">
+    ${children}
+  </div>
+`;
+export default Card;
