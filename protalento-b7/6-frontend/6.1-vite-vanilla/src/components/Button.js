@@ -7,10 +7,10 @@ const Button = () => {
   };
 
   return `
-    <button id="counter" type="button" onClick="buttonHandleClick(event)">
-      count is ${counter}
-    </button>
-  `;
+      <button id="counter" type="button" onClick="buttonHandleClick(event)">
+        count is ${counter}
+      </button>
+    `;
 };
 
 export default Button;
