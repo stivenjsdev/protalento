@@ -17,8 +17,9 @@ server.use(cors());
 server.use(logger);
 server.use("/api/v1/users", userRouter);
 server.use("/api/v1/comments", commentRouter);
+
 server.use(unknownEndpoint);
-// server.use(errorHandler);
+server.use(errorHandler);
 
 async function main() {
   await dbConnection();

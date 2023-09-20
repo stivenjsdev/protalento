@@ -1,10 +1,13 @@
 import { Router } from "express";
 import Comment from "../models/comment.js";
-import { getComments, createComment } from "../controllers/commentController.js"
-const commentRouter = Router();
+import simpleMiddleWare from '../middleware/simpleMiddleware.js'
+import authJWT from "../middleware/auth.js";
+import { createComment, getComments, getComment, updateComment, deleteComment } from "../controllers/comment.controller.js"
+export const commentRouter = Router();
 
-commentRouter.get("/", getComments)
+commentRouter.use(authJWT) // <-- uso general
+commentRouter.get("/", getComments) // uso indiviudal
+commentRouter.get("/:id", getComment)
 commentRouter.post("/", createComment)
-
-
-export { commentRouter }
+commentRouter.patch("/:id", updateComment)
+commentRouter.delete("/:id", deleteComment)
