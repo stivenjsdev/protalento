@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import reactLogo from '../assets/react.svg';
 import './App.css';
-import { element, element2 } from './IntroReact';
+import {
+  element, element2, MyComponent, ProfileCard,
+} from './IntroReact';
 import viteLogo from '/vite.svg';
 
 function App() {
@@ -38,6 +40,9 @@ function App() {
 
       {element}
       {element2}
+
+      <MyComponent name="brayan" lastName="chaves" />
+      <ProfileCard name="Camilo" age={45} />
     </>
   );
 }
