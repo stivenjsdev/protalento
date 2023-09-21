@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   name: String, // String is shorthand for {type: String}
   email: { type: String, required: true },
   password: { type: String, required: true },
+  avatar: { type: String, required: false }
 });
 
 // USER MODEL

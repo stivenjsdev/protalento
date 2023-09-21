@@ -1,5 +1,5 @@
 import { User } from "../models/user.js";
-import Joi from 'joi'
+import jwt from 'jsonwebtoken'
 
 const getUsuarios = async (request, response, next) => {
     try {
@@ -32,24 +32,6 @@ const createUser = async (request, response, next) => {
   
       const { name, email, password } = request.body
 
-      const schema = Joi.object({
-          name: Joi.string().min(4).max(10),
-          email: Joi.string().email().required(),
-          password: Joi.string().pattern(new RegExp(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]).{8,}$/))
-      })
-
-      const value = schema.validate({ 
-        name: name, 
-        email: email,
-        password: password
-      });
-
-      if(value.error){
-
-        // next(error)
-        response.status(400).json({error: "Hay error"})
-
-      }else{
         // MANERA 1
         // const newUser = new User(userProps);
         // await newUser.save();
@@ -65,9 +47,6 @@ const createUser = async (request, response, next) => {
     
         // response.status(201).json(newUser);
         response.status(201).end();
-      }
-
-
   
     } catch (error) {
       next(error);
@@ -107,4 +86,44 @@ const deleteUser = async (request, response, next) => {
     }
   }
 
-export { getUsuarios, getUsuario, createUser, updateUser, deleteUser }
+  const login =  async (request, response, next) => {
+    const { email, password } = request.body
+
+    const data ={
+      email, 
+      password
+    }
+
+    jwt.sign(data, 'gatito123', (err, token)=>{
+      if(err){
+        next(err);
+      }else{
+        response.json({"msg":"Token creado", "token": token})
+      }
+    })
+    
+  }
+
+  const uploadAvatar = async (request, response, next) =>{
+    console.log(request.body)
+    const id = request.params.id;
+
+    const img = `http://localhost:3000/${request.file.path}`
+
+    const userNewProps = {
+      avatar: img
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(id, userNewProps, {
+      new: true,
+    }).exec();
+
+    /*response.json({
+      "success":img,
+      "body":request.body
+    })*/
+    response.json(updatedUser)
+
+  }
+
+export { getUsuarios, getUsuario, createUser, updateUser, deleteUser, login, uploadAvatar }
