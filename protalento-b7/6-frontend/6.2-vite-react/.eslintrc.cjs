@@ -18,6 +18,7 @@ module.exports = {
     'import/no-absolute-path': 'off',
     'react/react-in-jsx-scope': 'off',
     'linebreak-style': 'off',
+    // 'semi': ['error', 'never'],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
