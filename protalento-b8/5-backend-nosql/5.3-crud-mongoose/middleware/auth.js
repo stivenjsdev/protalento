@@ -1,20 +1,23 @@
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
 const authJWT = (request, response, next) => {
-    const token = request.headers.authorization
+    let token = request.headers['x-access-token'] || request.headers.authorization || '';
 
-    if(token == null){
-        response.json({"msg":"El token no debe ir vacio"})
+    if (token.startsWith('Bearer ')) {
+        token = token.slice(7, token.length);
     }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, token) => {
-        if(err){
-            response.status(500).json(err)
-            return;
-        }else{
-            next()
-        }
-    })
+    if(!token){
+        return response.status(401).json({ ok: false, error: "empty token"});
+    }
+
+    try {
+        const { uid } = jwt.verify(token, process.env.JWT_SECRET);
+        request.userId = uid;
+        next();
+    } catch (error) {
+        next(error);
+    }
 }
 
 export default authJWT

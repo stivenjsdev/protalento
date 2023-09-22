@@ -5,7 +5,9 @@ import { dbConnection } from "./database/db.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import { logger } from "./middleware/logger.js";
 import { unknownEndpoint } from "./middleware/unknownEndpoint.js";
+import { authRouter } from "./routes/auth.routes.js";
 import { commentRouter } from "./routes/comment.routes.js";
+import { profileRouter } from "./routes/profile.routes.js";
 import { userRouter } from "./routes/user.routes.js";
 
 const server = express();
@@ -18,6 +20,8 @@ server.use(cors());
 server.use(logger);
 server.use("/api/v1/users", userRouter);
 server.use("/api/v1/comments", commentRouter);
+server.use("/api/v1/auth", authRouter);
+server.use("/api/v1/profile", profileRouter);
 server.use(
   "/api/v1/welcome",
   (req, res) => res.status(200).json({message: 'Welcome to my api rest'}) 
