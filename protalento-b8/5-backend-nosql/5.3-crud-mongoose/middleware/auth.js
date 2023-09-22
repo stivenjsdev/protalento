@@ -7,7 +7,7 @@ const authJWT = (request, response, next) => {
         response.json({"msg":"El token no debe ir vacio"})
     }
 
-    jwt.verify(token, 'gatito123', (err, token) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, token) => {
         if(err){
             response.status(500).json(err)
             return;
