@@ -21,7 +21,6 @@ export const signUp = async (req, res, next) => {
 
     // MANERA 1
     const newUser = new User(userProps);
-    console.log(newUser);
     // OR...
     
     // MANERA 2, elijan a su gusto.

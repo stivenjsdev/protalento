@@ -1,8 +1,7 @@
 import { Router } from "express";
-import { User } from "../models/user.js";
-import simpleMiddleware from "../middleware/simpleMiddleware.js";
+import { createUser, deleteUser, getUsuario, getUsuarios, login, updateUser, uploadAvatar } from "../controllers/user.controller.js";
 import upload from "../middleware/upload.js";
-import { getUsuario, getUsuarios, createUser, updateUser, deleteUser, login, uploadAvatar } from "../controllers/user.controller.js";
+import { validator } from "../middleware/validator.js";
 export const userRouter = Router();
 
 // ROUTES
@@ -17,14 +16,14 @@ userRouter.get("/:id", getUsuario);
 
 // create user
 /* POST http://localhost:3000/api/v1/users */
-userRouter.post("/", simpleMiddleware, createUser);
+userRouter.post("/", validator, createUser);
 userRouter.post("/login", login);
 userRouter.post("/avatar/:id", upload.single('avatar') , uploadAvatar);
 
 // update user by id
 /* PATCH http://localhost:3000/api/v1/users/:id */
 /* put va a reemplazar todo el recurso, y patch va a actualizar el recurso */
-userRouter.patch("/:id", simpleMiddleware, updateUser);
+userRouter.patch("/:id", validator, updateUser);
 
 // delete user by id
 /* DELETE http://localhost:3000/api/v1/users/:id */
