@@ -1,0 +1,18 @@
+.task-field {
+  padding: 10px;
+  margin: 20px 0;
+  display: block;
+  font-size: 16px;
+}
+
+.task-button {
+  width: 100%;
+}
+.task-button:hover {
+  background-color: #333;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
