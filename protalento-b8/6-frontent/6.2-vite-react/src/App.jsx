@@ -1,11 +1,14 @@
 import './App.css';
 import { Counter } from './components/Counter';
+import { Greeting } from './components/Greeting';
 
 function App() {
-  // cuerpo del componente ira antes del return
   return (
     <div>
       <Counter />
+      <Greeting name="Stiven" age={30} />
+      <Greeting name="Alex" age={34} />
+      <Greeting name="Johann" age={56} />
     </div>
   );
 }
