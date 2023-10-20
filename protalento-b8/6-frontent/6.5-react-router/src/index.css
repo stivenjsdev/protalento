@@ -1,0 +1,43 @@
+body{
+  padding:0;
+  margin:0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+nav{
+  display: flex;
+  padding:10px;
+  justify-content: space-around;
+  background-color: aquamarine;
+}
+
+nav a{
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+nav a.principal{
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+section{
+  height: 40vh;
+  padding:30px;
+  font-size: 30px;
+}
+
+section.home{
+  background-color: #ababdf;
+}
+
+section.blog{
+  background-color: #de81c7;
+}
+
+section.contacto{
+  background-color: #80cb5f;
+}
+

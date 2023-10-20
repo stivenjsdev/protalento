@@ -14,8 +14,7 @@ function Drink(){
             setDrink(json.drinks[0])
         }
         getDrinks()
-    })
-
+    },[])
 
     return (
         <>

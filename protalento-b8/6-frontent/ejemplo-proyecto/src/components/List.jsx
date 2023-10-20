@@ -12,7 +12,7 @@ function List() {
             setDrinks(json.drinks)
         }
         getDrinks()
-    })
+    },[])
 
     return (
         <>        
